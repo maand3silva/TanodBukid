@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/responsive-tokens.css">
   <link rel="stylesheet" href="src/styles.css">
   <link rel="stylesheet" href="css/chat-widget.css">
+  <link rel="stylesheet" href="css/tanodbukid-theme.css">
 </head>
 
 <body class="scanner-page">
@@ -230,6 +231,8 @@
       let capturedPhotoUrl = ''
       let selectedScanId = null
       let selectedScanSaved = false
+      let latestAiScan = null
+      let analyzedPhoto = null
       let scanSavePromise = null
 
       const escapeScanHistoryHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character])
@@ -247,26 +250,73 @@
       async function persistSelectedScan() {
         if (!selectedScanPhoto || selectedScanSaved) return
         if (scanSavePromise) return scanSavePromise
+
         selectedScanId ||= makeScanId()
-        setScanHistoryStatus('Saving scan to history...')
-        scanSavePromise = saveScanRecord({
-          id: selectedScanId,
-          userId: null,
-          scannedAt: new Date().toISOString(),
-          cropName: null,
-          fieldName: null,
-          analysisStatus: 'unavailable',
-          analysisResult: null,
-          resultUnavailableReason: 'AI analysis is not connected to this scanner yet.'
-        }, selectedScanPhoto).then(() => {
-          selectedScanSaved = true
-          setScanHistoryStatus('Scan saved to history. Result unavailable because AI analysis is not connected.')
-        }).catch((storageError) => {
-          console.error('[scanner history] Unable to save scan', storageError)
-          setScanHistoryStatus('Unable to save scan history. Please try again.')
-        }).finally(() => {
-          scanSavePromise = null
-        })
+        setScanHistoryStatus('Analyzing photo with AI...')
+
+        scanSavePromise = (async () => {
+          try {
+            const form = new FormData()
+            form.append('photo', selectedScanPhoto, 'plant-scan.jpg')
+
+            const response = await fetch('/api/scan.php', {
+              method: 'POST',
+              body: form,
+              credentials: 'same-origin'
+            })
+
+            const data = await response.json()
+
+            if (!response.ok || !data.success || !data.scan) {
+              throw new Error(data.message || 'AI analysis failed.')
+            }
+
+            const scan = data.scan
+            latestAiScan = scan
+            analyzedPhoto = selectedScanPhoto
+            const supported = scan.supported === true
+            const confidence = Number(scan.confidence) || 0
+            const summary = supported
+              ? `${scan.crop}: ${scan.condition}`
+              : 'Uncertain or unsupported plant'
+
+            await saveScanRecord({
+              id: selectedScanId,
+              userId: null,
+              scannedAt: new Date().toISOString(),
+              cropName: supported ? scan.crop : null,
+              fieldName: null,
+              analysisStatus: supported ? 'completed' : 'unavailable',
+              analysisResult: {
+                summary,
+                crop: scan.crop,
+                condition: scan.condition,
+                confidence,
+                detectedIssue: supported ? scan.condition : null,
+                recommendations: [scan.notice || '']
+              },
+              resultUnavailableReason: supported
+                ? null
+                : (scan.notice || 'The model could not identify this plant reliably.')
+            }, selectedScanPhoto)
+
+            selectedScanSaved = true
+            if (!scanAnalysisView.hidden) setScanTab(true)
+
+            setScanHistoryStatus(
+              `${summary} — ${Math.round(confidence * 100)}% model score. ` +
+              'Experimental AI result. Saved to history.'
+            )
+          } catch (error) {
+            console.error('[scanner AI] Analysis failed:', error)
+            setScanHistoryStatus(
+              `AI analysis failed: ${error.message}. Scan not saved.`
+            )
+          } finally {
+            scanSavePromise = null
+          }
+        })()
+
         return scanSavePromise
       }
 
@@ -510,6 +560,89 @@
         window.location.href = route === 'home' ? homePath : `${homePath}#${route}`
       }))
 
+
+      function renderScanPredictions() {
+        // Hide old hardcoded sample metrics and recommendations.
+        scanAnalysisView.querySelectorAll(
+          ':scope > :not(#analysis-save-status):not(#analysis-unavailable)'
+        ).forEach(element => {
+          element.hidden = true
+          element.style.display = 'none'
+        })
+
+        let list = document.getElementById('ai-top-predictions')
+        if (!list) {
+          list = document.createElement('div')
+          list.id = 'ai-top-predictions'
+          list.style.cssText = 'margin-top:18px;display:grid;gap:12px'
+          analysisUnavailable.appendChild(list)
+        }
+        list.replaceChildren()
+
+        // Never display predictions belonging to a previous photo.
+        if (!latestAiScan || analyzedPhoto !== selectedScanPhoto) {
+          if (selectedScanPhoto) {
+            analysisUnavailableTitle.textContent = 'Analyzing photo...'
+            analysisUnavailableCopy.textContent =
+              'Processing your selected image.'
+          }
+          return
+        }
+
+        const scan = latestAiScan
+        const score = Math.round(Number(scan.confidence || 0) * 100)
+
+        analysisUnavailableTitle.textContent = scan.supported
+          ? `${scan.crop}: ${scan.condition}`
+          : 'Classification uncertain'
+
+        analysisUnavailableCopy.textContent =
+          `${score}% model score. ` +
+          (scan.supported
+            ? 'Possible classification — not a confirmed diagnosis.'
+            : 'No prediction met the 70% threshold. ' +
+              'These possibilities are not confirmed diagnoses.')
+
+        const heading = document.createElement('h3')
+        heading.textContent = 'Top 3 model predictions'
+        heading.style.cssText = 'margin:0;font-size:17px'
+        list.appendChild(heading)
+
+        for (const prediction of (scan.alternatives || []).slice(0, 3)) {
+          const row = document.createElement('div')
+          row.style.cssText =
+            'padding:12px 14px;background:#f0f5ea;border-radius:12px'
+
+          const label = document.createElement('div')
+          label.style.cssText =
+            'display:flex;justify-content:space-between;gap:12px;' +
+            'font-size:14px;color:#234832'
+
+          const name = document.createElement('span')
+          name.textContent = String(prediction.label).replaceAll('___', ' — ').replaceAll('_', ' ')
+
+          const value = document.createElement('strong')
+          const percent = Math.round(Number(prediction.confidence || 0) * 100)
+          value.textContent = percent + '%'
+
+          label.append(name, value)
+
+          const track = document.createElement('div')
+          track.style.cssText =
+            'height:7px;background:#d8e3d2;border-radius:8px;' +
+            'margin-top:9px;overflow:hidden'
+
+          const fill = document.createElement('div')
+          fill.style.cssText =
+            'height:100%;background:#518468;border-radius:8px'
+          fill.style.width = Math.max(0, Math.min(100, percent)) + '%'
+          track.appendChild(fill)
+
+          row.append(label, track)
+          list.appendChild(row)
+        }
+      }
+
       function setScanTab(showAnalysis) {
         liveScanView.hidden = showAnalysis
         scanAnalysisView.hidden = !showAnalysis
@@ -528,14 +661,31 @@
             analysisThumbnail.src = capturedPhotoUrl
           }
           analysisUnavailable.hidden = false
-          analysisUnavailableTitle.textContent = hasSubmittedPhoto ? 'Result unavailable' : 'No scan result yet'
-          analysisUnavailableCopy.textContent = hasSubmittedPhoto
-            ? 'The scan image was saved, but this app did not return an AI analysis result.'
-            : 'Capture and submit a plant photo to save it. AI analysis is not connected to this scanner.'
+          if (latestAiScan) {
+            const scan = latestAiScan
+            const confidence = Math.round(Number(scan.confidence || 0) * 100)
+
+            analysisUnavailableTitle.textContent = scan.supported
+              ? `${scan.crop}: ${scan.condition}`
+              : 'Uncertain / unsupported plant'
+
+            analysisUnavailableCopy.textContent =
+              `${confidence}% model score. ` +
+              (scan.notice || 'Experimental AI classification.')
+          } else {
+            analysisUnavailableTitle.textContent = hasSubmittedPhoto
+              ? 'Analyzing photo...'
+              : 'No scan result yet'
+
+            analysisUnavailableCopy.textContent = hasSubmittedPhoto
+              ? 'The AI model is processing your image.'
+              : 'Capture or upload a plant photo to begin analysis.'
+          }
           const hasPreview = Boolean(hasSubmittedPhoto && capturedPhotoUrl)
           analysisUnavailablePhoto.hidden = !hasPreview
           analysisUnavailablePlaceholder.hidden = hasPreview
           if (hasPreview) analysisUnavailablePhoto.src = capturedPhotoUrl
+          renderScanPredictions()
           if (hasSubmittedPhoto) void persistSelectedScan()
           state.textContent = 'Paused'
           tag.textContent = 'Paused'

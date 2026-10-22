@@ -1,0 +1,309 @@
+/* TanodBukid shared visual system — loaded AFTER page-specific CSS. */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap');
+:root { --tb-font-body:'Plus Jakarta Sans',system-ui,sans-serif; --tb-font-heading:'Sora',system-ui,sans-serif; --tb-bg:#f5f4e9; --tb-forest:#194835; --tb-sage:#e7f0de; --tb-gold:#caa64b; }
+html,body,button,input,textarea,select { font-family:var(--tb-font-body); }
+h1,h2,h3,h4,.welcome h1,.home-slide h2,.home-articles-head h2,.monitor-brand strong {font-family:var(--tb-font-heading);letter-spacing:-.025em;}
+button,input,textarea,select { font-family:var(--tb-font-body); }
+@media(min-width:900px) {
+  html,body {background:var(--tb-bg);}
+  body {font-size:16px;line-height:1.55;}
+  /* Main dashboard home and inner pages */
+  body .phone-frame {background:var(--tb-bg);}
+  body .phone-frame>.app-shell {background:linear-gradient(145deg,#f8faf1 0%,#f4f7ef 52%,#fcf9f0 100%);}
+  body .phone-frame>.app-shell>.welcome {padding-top:30px;padding-bottom:24px;}
+  body .phone-frame .app-shell .welcome h1 {font-family:var(--tb-font-heading);font-size:32px;line-height:1.3;}
+  body .phone-frame .app-shell .eyebrow,body .phone-frame .app-shell .sub {font-size:15px;line-height:1.6;}
+  body .phone-frame .app-shell .home-slide {min-height:245px;}
+  body .phone-frame .app-shell .home-slide-content {padding:30px 30px 44px;width:min(70%,680px);}
+  body .phone-frame .app-shell .home-slide h2 {max-width:510px;font:800 29px/1.22 var(--tb-font-heading);}
+  body .phone-frame .app-shell .home-slide p {max-width:440px;font-size:15px;line-height:1.55;}
+  body .phone-frame .app-shell .home-slide-action {min-height:42px;padding:8px 18px;font-size:14px;}
+  body .phone-frame .app-shell .home-slide-kicker {font-size:12px;}
+  body .phone-frame .app-shell .stats {grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;align-items:stretch;padding:0;}
+  body .phone-frame .app-shell .stat {height:auto;min-height:196px;padding:22px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;border-radius:20px;background:linear-gradient(150deg,#fff 10%,#f4f9ee 100%);border:1px solid #dde9da;box-shadow:0 9px 24px rgba(39,83,52,.09);}
+  body .phone-frame .app-shell .stat-icon {width:52px;height:52px;flex:0 0 52px;margin:0;font-size:25px;}
+  body .phone-frame .app-shell .stat strong {margin:0;font:800 31px/1.15 var(--tb-font-heading);}
+  body .phone-frame .app-shell .stat strong small {font:600 14px var(--tb-font-body);}
+  body .phone-frame .app-shell .stat p {height:auto;min-height:0;margin:0;font-size:15px;line-height:1.5;text-align:center;}
+  body .phone-frame .app-shell .quick {gap:18px;}
+  body .phone-frame .app-shell .quick button {min-height:125px;padding:20px;border-radius:18px;background:#fffdf8;}
+  body .phone-frame .app-shell .quick b {font-size:17px;line-height:1.4;}
+  body .phone-frame .app-shell .quick small {font-size:14px;line-height:1.5;}
+  body .phone-frame .app-shell .quick-icon {height:38px;width:38px;font-size:20px;}
+  body .phone-frame .app-shell .section-head h2,body .phone-frame .app-shell .home-articles-head h2 {font:700 22px/1.3 var(--tb-font-heading);}
+  body .phone-frame .app-shell .home-article {grid-template-columns:110px minmax(0,1fr) 20px;gap:18px;padding:14px;min-height:120px;}
+  body .phone-frame .app-shell .home-article img {width:110px;height:87px;}
+  body .phone-frame .app-shell .home-article h3 {font:700 17px/1.4 var(--tb-font-heading);}
+  body .phone-frame .app-shell .home-article p {font-size:14px;line-height:1.5;}
+  body .phone-frame .app-shell .home-article-meta,body .phone-frame .app-shell .home-article-tag {font-size:12px;line-height:1.4;}
+  body .phone-frame .app-shell .activity-copy b {font-size:15px;}
+  body .phone-frame .app-shell .activity-copy small,body .phone-frame .app-shell .when {font-size:13px;}
+  body .phone-frame .app-shell .activity-row {min-height:65px;padding:12px 16px;}
+  body .phone-frame .app-shell .new-screen .topbar h1 {font:700 28px/1.3 var(--tb-font-heading);}
+  body .phone-frame .app-shell .new-screen .topbar p {font-size:14px;line-height:1.5;}
+  body .phone-frame .app-shell .new-screen .screen-title {font-size:17px;line-height:1.4;}
+  body .phone-frame .app-shell .new-screen .screen-title a {font-size:14px;}
+  body .phone-frame .app-shell #climate-screen .climate-hero {min-height:150px;padding:24px 25px 31px;}
+  body .phone-frame .app-shell #climate-screen .climate-hero b {font-size:22px;}
+  body .phone-frame .app-shell #climate-screen .climate-hero span,body .phone-frame .app-shell #climate-screen .climate-hero .farm-risk-note {font-size:14px;line-height:1.55;}
+  body .phone-frame .app-shell #climate-screen .forecast {gap:14px;}
+  body .phone-frame .app-shell #climate-screen .forecast-card {flex:1 0 100px;min-width:100px;height:148px;padding:18px 10px;}
+  body .phone-frame .app-shell #climate-screen .forecast-card b,body .phone-frame .app-shell #climate-screen .forecast-card strong {font-size:15px;}
+  body .phone-frame .app-shell #climate-screen .forecast-card small {font-size:13px;}
+  body .phone-frame .app-shell #climate-screen .alert {min-height:125px;padding:20px 20px 20px 65px;}
+  body .phone-frame .app-shell #climate-screen .alert h3 {font-size:18px;line-height:1.4;}
+  body .phone-frame .app-shell #climate-screen .alert p,body .phone-frame .app-shell #climate-screen .farm-advisory p {font-size:15px;line-height:1.6;}
+  body .phone-frame .app-shell #climate-screen .farm-advisory h2 {font-size:19px;}
+  body .phone-frame .app-shell #profile-screen .row-label {font-size:16px;}
+  body .phone-frame .app-shell #profile-screen .row-value,body .phone-frame .app-shell #profile-screen .profile-head p {font-size:14px;line-height:1.5;}
+  body .phone-frame .app-shell #scan-screen p {font-size:14px;line-height:1.5;}
+  /* Sidebar links in main dashboard; compatible with existing CSS */
+  body .phone-frame .app-shell>.new-bottom-nav button,body .phone-frame .app-shell>.new-bottom-nav button span:not(.nav-icon):not(.add) {font-family:var(--tb-font-body);font-size:16px;line-height:1.4;}
+  body .phone-frame .app-shell>.new-bottom-nav::before {font-family:var(--tb-font-heading);}
+  /* Standalone scanner: its nav is a sibling of <main>, not part of the dashboard shell */
+  body.scanner-page {padding-left:260px;background:var(--tb-bg);}
+  body.scanner-page .dashboard-page.app-shell,body.scanner-page .dashboard-page.showing-analysis {width:min(100% - 48px,1200px);max-width:1200px;margin:0 auto;padding:28px 0 60px;background:transparent;}
+  body.scanner-page .monitor-shell,body.scanner-page .monitor-shell.showing-analysis {width:100%;max-width:none;min-height:0;border-radius:22px;}
+  body.scanner-page>nav.new-bottom-nav {position:fixed;top:0;left:0;right:auto;bottom:auto;transform:none;display:flex;flex-direction:column;justify-content:flex-start;align-items:stretch;gap:10px;width:260px;max-width:260px;height:100dvh;padding:106px 18px 24px;margin:0;border-radius:0;background:linear-gradient(180deg,#173e31,#246149);border-right:1px solid #527c60;overflow-y:auto;z-index:30;}
+  body.scanner-page>nav.new-bottom-nav::before {content:'TanodBukid';position:absolute;top:27px;left:22px;color:#f6eedc;font:800 23px var(--tb-font-heading);}
+  body.scanner-page>nav.new-bottom-nav button {display:flex;justify-content:flex-start;align-items:center;gap:16px;width:100%;min-height:54px;padding:10px 15px;border-radius:12px;color:#e5efdc;font:600 16px var(--tb-font-body);text-align:left;}
+  body.scanner-page>nav.new-bottom-nav button.active {background:rgba(255,255,255,.17);color:#fff;}
+  body.scanner-page>nav.new-bottom-nav button .nav-icon {width:29px;height:29px;display:grid;place-items:center;font-size:24px;}
+  body.scanner-page>nav.new-bottom-nav .add {width:30px;height:30px;min-width:30px;margin:0;font-size:22px;border-radius:9px;background:var(--tb-gold);color:var(--tb-forest);}
+  body.scanner-page>nav.new-bottom-nav .add-label {margin:0;color:inherit;font-size:16px;}
+  body.scanner-page .camera-card {height:440px;}
+  body.scanner-page .monitor-brand strong {font-size:21px;}
+  body.scanner-page .monitor-brand small,body.scanner-page .monitor-tabs button {font-size:14px;}
+  body.scanner-page .section-heading h2 {font-size:19px;}
+  body.scanner-page .metric-list>div {min-height:52px;font-size:15px;}
+  body.scanner-page .metric-list strong {font-size:14px;}
+  body.scanner-page .dashboard-section {font-size:15px;}
+  /* Profile setup and authentication */
+  body .profile-setup-page {background:linear-gradient(135deg,#eaf1e2,#fbf6e6);}
+  body .profile-setup-card {font-family:var(--tb-font-body);}
+  body .profile-setup-card .profile-title {font:700 30px/1.25 var(--tb-font-heading);}
+  body .profile-setup-card .profile-subtitle {font-size:15px;line-height:1.6;}
+  body .profile-setup-card .field-label {font-size:15px;}
+  body .profile-setup-card .profile-input {font-size:16px;}
+  body #auth-app .auth-hero h1,body #landing-app h1,body #landing-app h2 {font-family:var(--tb-font-heading);}
+  body #auth-app .card label,body #auth-app input {font-size:15px;}
+}
+@media(min-width:900px) and (max-width:1200px){body .phone-frame .app-shell .stats {grid-template-columns:repeat(2,minmax(0,1fr));}}
+
+/* Sidebar palette update — color only; layout and typography unchanged. */
+@media (min-width: 900px) {
+  body .phone-frame > .app-shell > nav.new-bottom-nav,
+  body.scanner-page > nav.new-bottom-nav {
+    background: linear-gradient(180deg, #edf4e5 0%, #e3eddb 55%, #f6f2e4 100%);
+    border-right: 1px solid #cbdcc8;
+    box-shadow: 5px 0 24px rgba(33, 78, 49, .07);
+  }
+
+  body .phone-frame > .app-shell > nav.new-bottom-nav::before,
+  body.scanner-page > nav.new-bottom-nav::before {
+    color: #194b38;
+  }
+
+  body .phone-frame > .app-shell > nav.new-bottom-nav button,
+  body.scanner-page > nav.new-bottom-nav button {
+    color: #335842;
+    background: transparent;
+  }
+
+  body .phone-frame > .app-shell > nav.new-bottom-nav button:hover,
+  body.scanner-page > nav.new-bottom-nav button:hover {
+    background: rgba(48, 112, 75, .10);
+    color: #153f2d;
+  }
+
+  body .phone-frame > .app-shell > nav.new-bottom-nav button.active,
+  body.scanner-page > nav.new-bottom-nav button.active {
+    background: #d2e4d0;
+    color: #164730;
+  }
+
+  body .phone-frame > .app-shell > nav.new-bottom-nav .add,
+  body.scanner-page > nav.new-bottom-nav .add {
+    background: #d8aa4b;
+    color: #173c2b;
+  }
+
+  body .phone-frame > .app-shell > nav.new-bottom-nav .add-label,
+  body.scanner-page > nav.new-bottom-nav .add-label {
+    color: inherit;
+  }
+}
+
+/* Desktop profile setup: expand the page and card together. */
+@media (min-width: 900px) {
+  body .profile-setup-page {
+    width: 100%;
+    max-width: none;
+    min-height: 100dvh;
+    padding: clamp(28px, 5vw, 64px);
+    margin: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow-x: visible;
+    background: linear-gradient(130deg, #e8f0e2 0%, #f7f5e9 52%, #e8f2df 100%);
+  }
+  body .profile-setup-page > .profile-setup-card {
+    flex: 0 1 960px;
+    width: min(100%, 960px);
+    max-width: 960px;
+    min-height: 640px;
+    margin: 0;
+    padding: clamp(28px, 4vw, 56px);
+    border-radius: 24px;
+    background: linear-gradient(160deg, rgba(255,255,255,.94), rgba(244,250,239,.92));
+    box-shadow: 0 22px 60px rgba(32, 77, 51, .11);
+  }
+  body .profile-setup-card .profile-title {font-size:clamp(26px,2.8vw,34px);}
+  body .profile-setup-card .profile-header-row {align-items:center;}
+  body .profile-setup-card .profile-input {min-height:50px;}
+  body .profile-setup-card .selection-pill {min-height:48px;}
+  body .profile-setup-card .profile-subtitle {max-width:700px;}
+}
+
+/* Final readability pass: scanner panels and Add Activity; desktop only */
+@media (min-width: 900px) {
+  /* Standalone crop scanner: keep content readable at expanded desktop width */
+  body.scanner-page .dashboard-section,
+  body.scanner-page .analysis-card,
+  body.scanner-page .result-section,
+  body.scanner-page .result-recommendation,
+  body.scanner-page .quick-actions {
+    padding: 22px 26px;
+    border-radius: 18px;
+  }
+  body.scanner-page .section-heading {min-height:36px;gap:14px;align-items:center;}
+  body.scanner-page .section-heading h2,
+  body.scanner-page .result-section-heading h2,
+  body.scanner-page .quick-actions h2 {font-size:21px;line-height:1.35;}
+  body.scanner-page .section-heading button,
+  body.scanner-page .result-section-heading button {font-size:14px;min-height:36px;}
+  body.scanner-page .change-row,
+  body.scanner-page .alert-row,
+  body.scanner-page .result-change-row {min-height:76px;padding:15px 18px;gap:14px;align-items:center;}
+  body.scanner-page .change-row strong,
+  body.scanner-page .alert-row strong,
+  body.scanner-page .result-change-row strong,
+  body.scanner-page .farm-log p strong {font-size:16px;line-height:1.4;}
+  body.scanner-page .change-row small,
+  body.scanner-page .alert-row small,
+  body.scanner-page .farm-log p,
+  body.scanner-page .result-change-row p,
+  body.scanner-page .recommendation p,
+  body.scanner-page .result-recommendation p,
+  body.scanner-page .result-section-heading p {font-size:14px;line-height:1.55;}
+  body.scanner-page .change-row em,
+  body.scanner-page .alert-row em {font-size:13px;}
+  body.scanner-page .quick-actions button {min-height:76px;padding:16px;font-size:15px;line-height:1.4;}
+  body.scanner-page .quick-actions button span,
+  body.scanner-page .quick-actions button small {font-size:14px;}
+  body.scanner-page .recommendation strong,
+  body.scanner-page .result-recommendation strong {font-size:16px;line-height:1.4;}
+  body.scanner-page .metric-list > div {min-height:58px;gap:12px;}
+  body.scanner-page .metric-list > div span,
+  body.scanner-page .metric-list > div strong {font-size:15px;}
+  /* Farm activity page: center an actual desktop-width form instead of a 430px column */
+  body .phone-frame .app-shell #add-screen.activity-screen {
+    padding:28px clamp(20px,3vw,48px) 70px;
+  }
+  body .phone-frame .app-shell #add-screen .activity-form {
+    width:min(100%,900px);
+    max-width:900px;
+    margin:18px auto 0;
+    padding:30px;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    column-gap:22px;
+    row-gap:18px;
+    background:#fff;
+    border:1px solid rgba(48,97,67,.12);
+    border-radius:20px;
+    box-shadow:0 12px 32px rgba(25,70,47,.07);
+  }
+  body .phone-frame .app-shell #add-screen .activity-type-label,
+  body .phone-frame .app-shell #add-screen .activity-types,
+  body .phone-frame .app-shell #add-screen .activity-field:has(textarea),
+  body .phone-frame .app-shell #add-screen .activity-actions {grid-column:1 / -1;}
+  body .phone-frame .app-shell #add-screen .activity-types {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;}
+  body .phone-frame .app-shell #add-screen .activity-type {min-height:48px;padding:12px;font-size:15px;}
+  body .phone-frame .app-shell #add-screen .activity-type-label,
+  body .phone-frame .app-shell #add-screen .activity-field span {font-size:15px;font-weight:650;line-height:1.4;}
+  body .phone-frame .app-shell #add-screen .activity-field input,
+  body .phone-frame .app-shell #add-screen .activity-field textarea {width:100%;font-size:15px;line-height:1.5;}
+  body .phone-frame .app-shell #add-screen .activity-field input {min-height:50px;}
+  body .phone-frame .app-shell #add-screen .activity-field textarea {min-height:130px;}
+  body .phone-frame .app-shell #add-screen .activity-actions {justify-content:flex-end;gap:14px;}
+  body .phone-frame .app-shell #add-screen .activity-actions button {min-height:48px;min-width:165px;font-size:15px;}
+}
+
+
+/* Profile banner repair — desktop only */
+@media (min-width: 900px) {
+  body .phone-frame > .app-shell #profile-screen .profile-head {
+    height: auto;
+    min-height: 290px;
+    padding: 32px 28px 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    overflow: visible;
+    border-radius: 22px;
+    background: linear-gradient(125deg, #174c38 0%, #286b4d 55%, #4e946a 100%);
+    color: #fff;
+    text-align: center;
+  }
+
+  body .phone-frame > .app-shell #profile-screen .profile-avatar {
+    position: static;
+    flex: 0 0 72px;
+    width: 72px;
+    height: 72px;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    border: 2px solid rgba(255, 255, 255, .55);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .16);
+    color: #fff;
+    font-size: 30px;
+    line-height: 1;
+  }
+
+  body .phone-frame > .app-shell #profile-screen .profile-head h1 {
+    margin: 0;
+    color: #fff;
+    font: 700 30px/1.3 var(--tb-font-heading);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .13);
+  }
+
+  body .phone-frame > .app-shell #profile-screen .profile-head p {
+    margin: 0;
+    color: #ecf5e9;
+    font: 500 15px/1.6 var(--tb-font-body);
+  }
+
+  body .phone-frame > .app-shell #profile-screen .profile-head .stats-pills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    margin: 4px 0 0;
+  }
+
+  body .phone-frame > .app-shell #profile-screen .profile-head .stats-pills span {
+    padding: 8px 13px;
+    background: rgba(255, 255, 255, .17);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: 999px;
+    font: 600 14px/1.3 var(--tb-font-body);
+  }
+}

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
+
 .root {}
 
 :root {
@@ -38,12 +40,55 @@ body {
   -webkit-font-smoothing: antialiased
 }
 
-#landing-app.app-shell,
+/* Landing page - full desktop width */
+#landing-app.app-shell {
+  position: relative;
+  width: 100%;
+  max-width: none;
+  min-height: 100dvh;
+  margin: 0;
+}
+
+/* Keep dashboard layout unchanged */
 .dashboard-page.app-shell {
   position: relative;
   width: 100%;
   max-width: var(--tb-shell-width, 430px);
   margin: 0 auto;
+}
+
+/* Landing screen: full-bleed on desktop without affecting dashboard/auth screens. */
+#landing-app.app-shell > .hero.screen {
+  width: 100%;
+  min-height: 100dvh;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+#landing-app .page-shell {
+  width: 100%;
+  max-width: none;
+  min-height: 100dvh;
+  padding-inline: clamp(16px, 3vw, 48px);
+}
+
+#landing-app .brand-wrap {
+  width: 100%;
+  max-width: 470px;
+}
+
+#landing-app .logo-animator {
+  width: clamp(240px, 32vw, 460px);
+  max-width: 100%;
+}
+
+@media (max-width: 600px) {
+  #landing-app .logo-animator {
+    width: min(92vw, 460px);
+  }
 }
 
 /* App container should fill viewport (mobile-first) */
@@ -2919,5 +2964,99 @@ body {
 
   .profile-setup-card {
     width: min(100%, 430px);
+  }
+}
+
+/* ==========================================
+   PLANT / CROP SCANNER - DESKTOP LAYOUT
+   ========================================== */
+
+@media (min-width: 900px) {
+
+  .scanner-page {
+    background: #edf3eb;
+  }
+
+  .scanner-page .dashboard-page.app-shell,
+  .scanner-page .dashboard-page.showing-analysis {
+    width: min(100% - 48px, 1100px);
+    max-width: 1100px;
+    min-height: 100dvh;
+    margin: 0 auto;
+    padding: 32px 0 110px;
+    background: transparent;
+  }
+
+  .scanner-page .monitor-shell,
+  .scanner-page .monitor-shell.showing-analysis {
+    width: 100%;
+    max-width: none;
+    min-height: auto;
+    margin: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(24, 60, 43, 0.10);
+  }
+
+  /* Larger camera preview */
+  .scanner-page .camera-card {
+    height: 420px;
+    margin: 24px 32px 20px;
+    border-radius: 18px;
+  }
+
+  /* Capture and upload controls */
+  .scanner-page .camera-capture-controls {
+    margin: 0 32px 24px;
+  }
+
+  /* Analysis and information cards */
+  .scanner-page .analysis-card,
+  .scanner-page .dashboard-section {
+    margin-left: 32px;
+    margin-right: 32px;
+  }
+
+  /* Align bottom navigation with main content */
+  .scanner-page .new-bottom-nav,
+  .scanner-page .dashboard-page.showing-analysis + .new-bottom-nav {
+    width: min(100% - 48px, 1100px);
+    max-width: 1100px;
+    left: 50%;
+    right: auto;
+    margin: 0;
+    transform: translateX(-50%);
+    border-radius: 16px 16px 0 0;
+  }
+
+  .scanner-page .new-bottom-nav button {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 900px) {
+  body {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Manrope', sans-serif;
+    letter-spacing: -0.025em;
+  }
+
+  h1 { font-size: 32px; }
+  h2 { font-size: 24px; }
+  h3 { font-size: 18px; }
+
+  button, input, select, textarea {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+  }
+
+  .scanner-page .metric-list,
+  .scanner-page .dashboard-section {
+    font-size: 15px;
   }
 }

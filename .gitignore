@@ -1,0 +1,32 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor files
+.vscode/
+.idea/
+
+# Runtime uploads
+/uploads/profile/*
+!/uploads/profile/.htaccess
+/uploads/reports/*
+!/uploads/reports/.htaccess
+# Local backups and temporary files
+*.backup
+*.bak
+*.orig
+*.old
+*.pre-*
+*.html.pre-*
+__pycache__/
+*.pyc
+
+# Local scanner/model cache
+.cache/
+.huggingface/

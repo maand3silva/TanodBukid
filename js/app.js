@@ -59,20 +59,34 @@
     pageTitle.textContent = pages.register[0]
     pageSubtitle.textContent = pages.register[1]
     const checklist = passwordRules.map(([rule, label]) => `<li data-password-rule="${rule}" style="color:#777;font-size:12px;line-height:1.5"><span aria-hidden="true">×</span> ${label}</li>`).join('')
-    authLayout(`<form data-auth-form="register"><div style="display:flex;gap:10px"><div style="flex:1">${field('First Name', 'reg-first', 'First name', 'text', 'given-name')}</div><div style="flex:1">${field('Last Name', 'reg-last', 'Last name', 'text', 'family-name')}</div></div>${field('Mobile Number', 'reg-mobile', '09XX XXX XXXX', 'tel', 'tel')}${field('Email address', 'reg-email', 'youremail@gmail.com', 'email', 'email')}${passwordField('reg-password', 'new-password')}<div aria-live="polite" style="margin:-8px 0 12px"><strong style="font-size:12px">Password requirements</strong><ul id="password-checklist" style="display:grid;grid-template-columns:1fr 1fr;gap:1px 10px;margin:4px 0 6px;padding:0;list-style:none">${checklist}</ul><p id="password-strength" style="margin:0;font-size:12px">Strength: Weak</p><p id="password-match" role="status" style="margin:3px 0 0;font-size:12px"></p><p id="register-status" style="margin:3px 0 0;font-size:12px">Complete all required fields and password requirements.</p></div>${passwordField('reg-confirm-password', 'new-password', 'Confirm Password')}<button class="primary-btn" type="submit" disabled>CREATE ACCOUNT</button></form><div class="footer">Already Registered? <a href="#signin" class="link">Sign In</a></div>`)
+    authLayout(`<form data-auth-form="register"><div style="display:flex;gap:10px"><div style="flex:1">${field('First Name', 'reg-first', 'First name', 'text', 'given-name')}</div><div style="flex:1">${field('Last Name', 'reg-last', 'Last name', 'text', 'family-name')}</div></div>${field('Mobile Number', 'reg-mobile', '09XX XXX XXXX', 'tel', 'tel')}${field('Email address', 'reg-email', 'youremail@gmail.com', 'email', 'email')}${passwordField('reg-password', 'new-password')}<div aria-live="polite" style="margin:-8px 0 12px"><strong style="font-size:12px">Password requirements</strong><ul id="password-checklist" style="display:grid;grid-template-columns:1fr 1fr;gap:1px 10px;margin:4px 0 6px;padding:0;list-style:none">${checklist}</ul><p id="password-strength" style="margin:0;font-size:12px">Strength: Weak</p><p id="password-match" role="status" style="margin:3px 0 0;font-size:12px"></p><p id="register-status" style="margin:3px 0 0;font-size:12px">Complete all required fields and password requirements.</p></div>${passwordField('reg-confirm-password', 'new-password', 'Confirm Password')}<button class="primary-btn" type="submit">CREATE ACCOUNT</button></form><div class="footer">Already Registered? <a href="#signin" class="link">Sign In</a></div>`)
   }
 
+  // TANODBUKID_OTP_UI_V1 - simulated SMS OTP is for local development only.
+  let recoveryMobile = ''
+  let recoveryToken = ''
+
   function renderVerify() {
-    pageTitle.textContent = pages.verify[0]
-    pageSubtitle.textContent = pages.verify[1]
-    const inputs = Array.from({ length: 6 }, (_, index) => `<input id="otp-${index}" class="otp" inputmode="numeric" maxlength="1">`).join('')
-    authLayout(`<div style="text-align:center;font-size:14px;color:#333">Enter the 6-digit code sent to 0912 345 6789</div><div class="otp-row">${inputs}</div><div style="text-align:center;margin-top:8px">Didn't receive a code? <span class="link">Resend</span></div><button class="primary-btn" data-action="verify">VERIFY</button><div class="info-box">Code expires in 10 minutes.</div>`)
+    pageTitle.textContent = 'VERIFY YOUR NUMBER'
+    pageSubtitle.textContent = 'Enter the six-digit development OTP'
+    authLayout(`<form data-auth-form="verify-otp"><p>Number: ${recoveryMobile}</p>${field('Six-digit code', 'verify-code', '000000', 'text', 'one-time-code')}<button class="primary-btn" type="submit">VERIFY CODE</button></form><div class="info-box">Code expires after 5 minutes. Five attempts maximum.</div><div class="footer"><a class="link" href="#reset">Request another code</a></div>`)
+    const otpInput = document.getElementById('verify-code')
+    otpInput.setAttribute('inputmode', 'numeric')
+    otpInput.setAttribute('maxlength', '6')
+    otpInput.setAttribute('pattern', '[0-9]{6}')
   }
 
   function renderReset() {
-    pageTitle.textContent = pages.reset[0]
-    pageSubtitle.textContent = pages.reset[1]
-    authLayout(`${field('Mobile Number', 'reset-mobile', '09XX XXX XXXX', 'tel', 'tel')}<button class="primary-btn" data-action="send-reset">SEND RESET CODE</button><div class="info-box">A 6-digit reset code will be sent via SMS. Code valid for 15 minutes.</div><div class="footer">Remember password? <a href="#signin" class="link">Sign In</a></div>`)
+    pageTitle.textContent = 'FORGOT PASSWORD'
+    pageSubtitle.textContent = 'Reset your password using your registered mobile number'
+    authLayout(`<form data-auth-form="request-otp">${field('Mobile Number', 'reset-mobile', '09XX XXX XXXX', 'tel', 'tel')}<button class="primary-btn" type="submit">SEND RESET CODE</button></form><div class="info-box">A simulated SMS OTP will be displayed during local development. No real SMS is sent.</div><div class="footer">Remember password? <a href="#signin" class="link">Sign In</a></div>`)
+  }
+
+  function renderNewPassword() {
+    if (!recoveryToken) { window.location.hash='reset'; return }
+    pageTitle.textContent = 'NEW PASSWORD'
+    pageSubtitle.textContent = 'Create a secure new password'
+    authLayout(`<form data-auth-form="reset-password">${passwordField('new-password', 'new-password', 'New Password')}${passwordField('confirm-new-password', 'new-password', 'Confirm Password')}<p class="info-box">Use 8–72 bytes, uppercase and lowercase letters, a number and special character, no spaces.</p><button class="primary-btn" type="submit">SAVE NEW PASSWORD</button></form>`)
   }
 
   function showFeedback(message, isError = true) {
@@ -134,7 +148,7 @@
 
     const fieldsValid = form.checkValidity()
     const button = form.querySelector('button[type="submit"]')
-    button.disabled = !(valid && passwordsMatch && fieldsValid)
+    // Keep the button clickable so validation feedback can be displayed.
     const status = form.querySelector('#register-status')
     if (!valid) {
       status.textContent = 'Meet all password requirements above to continue.'
@@ -178,8 +192,24 @@
     event.preventDefault()
     const form = event.currentTarget
     const button = form.querySelector('button[type="submit"]')
-    if (button.disabled || !form.checkValidity()) {
+    if (form.dataset.authForm === 'register') {
       updateRegistrationState(form)
+
+      const password = form.querySelector('#reg-password').value
+      const confirmation = form.querySelector('#reg-confirm-password').value
+
+      if (!form.checkValidity()) {
+        form.reportValidity()
+        showFeedback('Complete all required fields with valid information.')
+        return
+      }
+
+      if (!passwordState(password).valid || password !== confirmation || !confirmation) {
+        showFeedback('Check password requirements and confirm matching passwords.')
+        return
+      }
+    } else if (!form.checkValidity()) {
+      form.reportValidity()
       return
     }
     const originalText = button.textContent
@@ -221,13 +251,43 @@
       button.textContent = input.type === 'password' ? 'Show' : 'Hide'
     }))
     const authForm = pageCard.querySelector('form[data-auth-form]')
-    authForm?.addEventListener('submit', submitAuthForm)
+    if (['request-otp','verify-otp','reset-password'].includes(authForm?.dataset.authForm)) {
+      authForm.addEventListener('submit', async (event) => {
+        event.preventDefault()
+        const button=authForm.querySelector('button[type="submit"]')
+        if (!authForm.checkValidity()) return
+        button.disabled=true
+        showFeedback('')
+        try {
+          if (authForm.dataset.authForm === 'request-otp') {
+            recoveryMobile=document.getElementById('reset-mobile').value.trim()
+            const response=await requestAuth('forgot-password.php',{mobile_number:recoveryMobile})
+            if (response.dev_otp) window.alert('DEVELOPMENT-ONLY SIMULATED SMS\nTanodBukid OTP: '+response.dev_otp+'\nExpires in 5 minutes.\n\nNo real SMS was sent.')
+            window.location.hash='verify'
+          } else if (authForm.dataset.authForm === 'verify-otp') {
+            const response=await requestAuth('verify-otp.php',{mobile_number:recoveryMobile,otp:document.getElementById('verify-code').value.trim()})
+            recoveryToken=response.reset_token
+            window.location.hash='newpassword'
+          } else {
+            const password=document.getElementById('new-password').value
+            const confirm=document.getElementById('confirm-new-password').value
+            if (!passwordState(password).valid) throw new Error('Password does not meet the registration password requirements.')
+            if (password!==confirm) throw new Error('Passwords do not match.')
+            await requestAuth('reset-password.php',{reset_token:recoveryToken,password})
+            recoveryToken=''
+            window.alert('Password reset successful. Please sign in with your new password.')
+            window.location.hash='signin'
+          }
+        } catch(error) {showFeedback(error.message)}
+        finally {button.disabled=false}
+      })
+    } else {
+      authForm?.addEventListener('submit', submitAuthForm)
+    }
     if (authForm?.dataset.authForm === 'register') {
       authForm.addEventListener('input', () => updateRegistrationState(authForm))
       updateRegistrationState(authForm)
     }
-    pageCard.querySelector('[data-action="send-reset"]')?.addEventListener('click', () => alert('Password reset is not available yet.'))
-    pageCard.querySelector('[data-action="verify"]')?.addEventListener('click', () => { window.location.hash = 'signin' })
     pageCard.querySelectorAll('.otp').forEach((input, index, inputs) => input.addEventListener('input', () => {
       if (input.value && index < inputs.length - 1) inputs[index + 1].focus()
     }))
@@ -243,7 +303,7 @@
       authApp.hidden = true
       return
     }
-    ;({ signin: renderSignin, register: renderRegister, verify: renderVerify, reset: renderReset }[state.route] || renderSignin)()
+    ;({ signin: renderSignin, register: renderRegister, verify: renderVerify, reset: renderReset, newpassword: renderNewPassword }[state.route] || renderSignin)()
   }
 
   window.addEventListener('hashchange', () => {

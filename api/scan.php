@@ -1,0 +1,23 @@
+<?php
+declare(strict_types=1);
+require __DIR__ . '/common.php';
+require_method('POST');
+start_app_session();
+if (session_user() === null) json_response(['success'=>false,'message'=>'Please sign in to scan crops.'],401);
+if (!isset($_FILES['photo']) || !is_array($_FILES['photo'])) json_response(['success'=>false,'message'=>'Select a photo.'],422);
+$f = $_FILES['photo'];
+if (($f['error'] ?? -1) !== UPLOAD_ERR_OK || ($f['size'] ?? 0) > 8*1024*1024 || ($f['size'] ?? 0) < 100) json_response(['success'=>false,'message'=>'Upload a JPG, PNG or WebP photo under 8 MB.'],422);
+$tmp = $f['tmp_name'] ?? '';
+if (!is_string($tmp) || !is_uploaded_file($tmp)) json_response(['success'=>false,'message'=>'Invalid upload.'],422);
+$mime = (new finfo(FILEINFO_MIME_TYPE))->file($tmp);
+if (!in_array($mime, ['image/jpeg','image/png','image/webp'],true) || @getimagesize($tmp) === false) json_response(['success'=>false,'message'=>'Use a valid JPG, PNG or WebP image.'],415);
+$bytes=file_get_contents($tmp);
+if ($bytes===false) json_response(['success'=>false,'message'=>'Could not read photo.'],500);
+$aiUrl=getenv('TANODBUKID_AI_URL') ?: 'http://ai:8080/predict';
+$context=stream_context_create(['http'=>['method'=>'POST','header'=>"Content-Type: {$mime}\r\nConnection: close\r\n",'content'=>$bytes,'timeout'=>90,'ignore_errors'=>true]]);
+$response=@file_get_contents($aiUrl,false,$context);
+if ($response===false) json_response(['success'=>false,'message'=>'AI service unavailable. Check the ai container.'],503);
+$status=isset($http_response_header[0]) && preg_match('/\s(\d{3})\s/', $http_response_header[0], $m) ? (int)$m[1] : 502;
+$result=json_decode($response,true);
+if ($status!==200 || !is_array($result)) json_response(['success'=>false,'message'=>'AI inference failed. Check ai logs.'],503);
+json_response(['success'=>true,'scan'=>$result]);

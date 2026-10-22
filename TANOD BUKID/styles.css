@@ -519,3 +519,82 @@ button {
         font-size: 26px;
     }
 }
+
+/* Desktop authentication layout */
+@media (min-width: 900px) {
+  #auth-app.mobile-mock {
+    width: min(100% - 64px, 1100px);
+    max-width: 1100px;
+    min-height: 700px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 45% 55%;
+    align-items: stretch;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  #auth-app .auth-hero {
+    height: 100%;
+    min-height: 700px;
+  }
+
+  #auth-app #page-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48px 64px;
+  }
+
+  #auth-app[hidden] {
+    display: none;
+  }
+}
+
+/* Desktop layout for onboarding screens */
+@media (min-width: 900px) {
+  #landing-app .feature-screen {
+    width: 100%;
+    min-height: 100dvh;
+    padding: 40px;
+    place-items: center;
+  }
+
+  #landing-app .feature-device {
+    width: min(100%, 1200px);
+    max-width: 1200px;
+    min-height: 650px;
+    height: min(85dvh, 800px);
+    display: grid;
+    grid-template-columns: 52% 48%;
+    align-items: stretch;
+    overflow: hidden;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(20, 52, 24, 0.12);
+  }
+
+  #landing-app .feature-illustration-wrap {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  #landing-app .feature-illustration {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #landing-app .feature-content {
+    width: 100%;
+    max-width: none;
+    min-height: 100%;
+    padding: 48px;
+    justify-content: center;
+  }
+
+  #landing-app .feature-content h2,
+  #landing-app .feature-content p {
+    max-width: 450px;
+  }
+}

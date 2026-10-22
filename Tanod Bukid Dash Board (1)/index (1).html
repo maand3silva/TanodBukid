@@ -7,7 +7,7 @@
   <title>Tanod Bukid | Farm overview</title>
   <link rel="stylesheet" href="../css/responsive-tokens.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
 
     :root {
       --ink: #17231c;
@@ -41,7 +41,7 @@
       min-height: 100vh;
       background: var(--paper);
       color: var(--ink);
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Nunito Sans', sans-serif;
       overflow-x: hidden;
       scrollbar-width: none;
     }
@@ -243,7 +243,7 @@
     }
 
     .welcome h1 {
-      font: 800 clamp(16px, 4.35vw, 17px) 'Manrope', sans-serif;
+      font: 800 clamp(16px, 4.35vw, 17px) 'Outfit', sans-serif;
       margin: 0 0 2px;
       letter-spacing: -.4px;
     }
@@ -337,7 +337,7 @@
     .home-slide h2 {
       max-width: 210px;
       margin: 0;
-      font: 800 19px/22px 'Manrope', sans-serif;
+      font: 800 19px/22px 'Outfit', sans-serif;
       letter-spacing: -.2px;
     }
 
@@ -422,14 +422,14 @@
       right: 12px;
       bottom: 12px;
       color: #fff;
-      font: 800 25px/1 'Manrope', sans-serif;
+      font: 800 25px/1 'Outfit', sans-serif;
     }
 
     .home-weather-temp small {
       display: block;
       margin-top: 4px;
       color: #d7f2e7;
-      font: 600 7px 'DM Sans', sans-serif;
+      font: 600 7px 'Nunito Sans', sans-serif;
       text-align: right;
     }
 
@@ -529,7 +529,7 @@
     .home-articles-head h2 {
       margin: 0;
       color: #204d35;
-      font: 800 14px 'Manrope', sans-serif;
+      font: 800 14px 'Outfit', sans-serif;
     }
 
     .home-articles-head button {
@@ -645,11 +645,11 @@
     .stat strong {
       display: block;
       margin-top: 5px;
-      font: 800 clamp(14px, 4.1vw, 16px) 'Manrope';
+      font: 800 clamp(14px, 4.1vw, 16px) 'Outfit';
     }
 
     .stat strong small {
-      font: 500 8px 'DM Sans';
+      font: 500 8px 'Nunito Sans';
     }
 
     .stat p {
@@ -916,7 +916,7 @@
     .activity-modal-heading h2 {
       margin: 0;
       color: #1d4d34;
-      font: 800 18px 'Manrope', 'Montserrat', sans-serif;
+      font: 800 18px 'Outfit', 'Montserrat', sans-serif;
     }
 
     .activity-modal-heading p {
@@ -1235,7 +1235,7 @@
 
     .new-screen .topbar h1 {
       margin: 0;
-      font: 800 17px 'Manrope';
+      font: 800 17px 'Outfit';
       letter-spacing: -.3px;
     }
 
@@ -1842,7 +1842,7 @@
     .farm-logs-header h1 {
       margin: 0;
       color: #1f4e37;
-      font: 800 17px 'Manrope';
+      font: 800 17px 'Outfit';
     }
 
     .farm-log-summary {
@@ -2158,7 +2158,7 @@
     .community-heading h1 {
       margin: 0;
       color: #214d35;
-      font: 800 21px/24px 'Manrope';
+      font: 800 21px/24px 'Outfit';
     }
 
     .community-heading p {
@@ -2651,7 +2651,7 @@
 
     .activity-head h1 {
       margin: 0;
-      font: 800 23px/27px 'Manrope';
+      font: 800 23px/27px 'Outfit';
     }
 
     .activity-head p {
@@ -2805,7 +2805,7 @@
 
     .scan-title h1 {
       margin: 9px 0 1px;
-      font: 800 16px/18px 'Manrope';
+      font: 800 16px/18px 'Outfit';
     }
 
     .scan-title p {
@@ -3179,7 +3179,7 @@
 
     .profile-head h1 {
       margin: 0;
-      font: 800 15px 'Manrope';
+      font: 800 15px 'Outfit';
     }
 
     .profile-head p {
@@ -3377,7 +3377,7 @@
     .prices-copy h1 {
       margin: 0 0 5px;
       color: #20563c;
-      font: 800 20px 'Manrope';
+      font: 800 20px 'Outfit';
     }
 
     .prices-copy p {
@@ -3409,7 +3409,7 @@
     .modal h2 {
       margin: 0 0 8px;
       color: #20563c;
-      font: 800 16px 'Manrope';
+      font: 800 16px 'Outfit';
     }
 
     .modal p {
@@ -4092,8 +4092,381 @@
         font-size: 12px;
       }
     }
+    /* TANODBUKID DESKTOP LAYOUT - consolidated */
+@media (min-width: 900px) {
+  :root { --tb-sidebar-width: 260px; --tb-desktop-gutter: clamp(24px, 3vw, 44px); }
+  body { font-family: 'Nunito Sans', sans-serif; font-size: 16px; line-height: 1.55; background: #edf3eb; }
+  .phone-frame { display: block; width: 100%; min-height: 100dvh; padding-left: var(--tb-sidebar-width); background: #edf3eb; }
+  .phone-frame > .app-shell {
+    width: 100%; max-width: 1440px; height: auto; min-height: 100dvh;
+    margin: 0 auto; padding: 0 var(--tb-desktop-gutter) 72px;
+    overflow-x: clip; overflow-y: visible; border-radius: 0; box-shadow: none; background: #fbfcfa;
+  }
+  /* Main heading and account controls share the same content inset. */
+  .phone-frame > .app-shell > header {
+    display: flex; justify-content: flex-end; align-items: center;
+    min-height: 78px; padding: 12px 0; border-bottom: 1px solid #e3ebe3;
+  }
+  .phone-frame > .app-shell > header .menu { display: none; }
+  .phone-frame > .app-shell > header > div { display: flex; align-items: center; gap: 12px; }
+  .phone-frame > .app-shell > header .avatar {
+    margin-left: 0; width: 38px; height: 38px; font-size: 13px;
+  }
+  /* Reuse the real navigation rather than adding a second sidebar. */
+  .phone-frame > .app-shell > .new-bottom-nav {
+    position: fixed; z-index: 30; top: 0; bottom: auto; left: 0; right: auto;
+    display: grid; grid-template-columns: minmax(0,1fr); grid-auto-rows: 56px;
+    align-content: start; align-items: stretch; gap: 8px;
+    width: var(--tb-sidebar-width); max-width: none; height: 100dvh;
+    margin: 0; padding: 104px 16px 28px; transform: none;
+    border: 0; border-right: 1px solid #dde9de; border-radius: 0;
+    background: #fff; overflow-y: auto;
+  }
+  .phone-frame > .app-shell > .new-bottom-nav::before {
+    content: 'TanodBukid'; position: absolute; top: 28px; left: 24px;
+    font: 800 25px/1.25 'Outfit', sans-serif; letter-spacing: -.6px; color: #20563c;
+  }
+  .phone-frame > .app-shell > .new-bottom-nav button {
+    display: flex; justify-content: flex-start; align-items: center; gap: 15px;
+    width: 100%; min-height: 54px; padding: 10px 15px;
+    border-radius: 12px; text-align: left;
+    font: 600 16px/1.35 'Nunito Sans', sans-serif; color: #526558;
+  }
+  .phone-frame > .app-shell > .new-bottom-nav button > span:not(.nav-icon):not(.add) {
+    font: inherit; color: inherit; margin: 0;
+  }
+  .phone-frame > .app-shell > .new-bottom-nav button:hover,
+  .phone-frame > .app-shell > .new-bottom-nav button.active {
+    color: #20563c; background: #e3f1e7;
+  }
+  .phone-frame > .app-shell > .new-bottom-nav .nav-icon {
+    flex: 0 0 28px; width: 28px; height: 28px; display: grid;
+    place-items: center; font-size: 22px;
+  }
+  .phone-frame > .app-shell > .new-bottom-nav .add {
+    position: static; flex: 0 0 28px; width: 28px; height: 28px;
+    margin: 0; border-radius: 9px; box-shadow: none; font-size: 23px;
+  }
+  .phone-frame > .app-shell > .new-bottom-nav .add-label { font-size: 16px; }
+  .phone-frame > .app-shell > .home-indicator { display: none; }
+  /* Remove margins intended for the 430px phone layout. */
+  .phone-frame > .app-shell > .welcome { padding: 30px 0 24px; }
+  .phone-frame > .app-shell > .welcome .eyebrow { font-size: 15px; }
+  .phone-frame > .app-shell > .welcome h1 { font: 800 30px/1.25 'Outfit', sans-serif; }
+  .phone-frame > .app-shell > .welcome .sub { font-size: 15px; line-height: 1.5; }
+  .phone-frame > .app-shell > .home-featured { width: 100%; margin: 0 0 24px; }
+  .phone-frame > .app-shell > .home-featured .home-slide { min-height: 280px; }
+  .phone-frame > .app-shell > .home-featured .home-slide-content { padding: 35px; }
+  .phone-frame > .app-shell > .home-featured .home-slide h2 { max-width: 480px; font-size: 27px; line-height: 1.25; }
+  .phone-frame > .app-shell > .home-featured .home-slide p { max-width: 430px; font-size: 15px; line-height: 1.5; }
+  .phone-frame > .app-shell > .home-featured .home-slide-kicker,
+  .phone-frame > .app-shell > .home-featured .home-slide-action { font-size: 13px; }
+  .phone-frame > .app-shell > .stats,
+  .phone-frame > .app-shell > .quick { width: 100%; padding-left: 0; padding-right: 0; gap: 16px; }
+  .phone-frame > .app-shell > .stat { min-height: 144px; padding: 22px 12px; }
+  .phone-frame > .app-shell > .stat strong { font-size: 28px; }
+  .phone-frame > .app-shell > .stat p { height: auto; font-size: 14px; line-height: 1.4; }
+  .phone-frame > .app-shell > .quick { grid-template-columns: repeat(4, minmax(0,1fr)); padding-top: 20px; }
+  .phone-frame > .app-shell > .quick button { min-height: 140px; padding: 20px; }
+  .phone-frame > .app-shell > .quick b { font-size: 16px; }
+  .phone-frame > .app-shell > .quick small { font-size: 14px; line-height: 1.45; }
+  .phone-frame > .app-shell > .home-articles { width: 100%; padding: 18px 0; }
+  .phone-frame > .app-shell > .home-articles-head h2 { font-size: 22px; }
+  .phone-frame > .app-shell > .home-article { grid-template-columns: 120px minmax(0, 1fr) 20px; padding: 14px; gap: 18px; }
+  .phone-frame > .app-shell > .home-article img { width: 120px; height: 90px; }
+  .phone-frame > .app-shell > .home-article h3 { font-size: 17px; line-height: 1.4; }
+  .phone-frame > .app-shell > .home-article p { font-size: 14px; line-height: 1.5; }
+  .phone-frame > .app-shell > .home-article-tag,
+  .phone-frame > .app-shell > .home-article-meta { font-size: 12px; }
+  /* Other screens share the content column. */
+  .phone-frame > .app-shell > .new-screen { width: 100%; max-width: none; }
+  .phone-frame > .app-shell > .new-screen .topbar { padding: 28px 0 20px; }
+  .phone-frame > .app-shell > .new-screen .topbar h1 { font-size: 28px; }
+  .phone-frame > .app-shell > .new-screen .topbar p { font-size: 14px; }
+  .phone-frame > .app-shell > .new-screen .screen-section { padding-left: 0; padding-right: 0; }
+  .phone-frame > .app-shell > .new-screen .screen-title { font-size: 16px; }
+  .phone-frame > .app-shell > .new-screen .screen-title a { font-size: 14px; }
+  .phone-frame > .app-shell > #climate-screen .climate-hero { margin: 0 0 22px; padding: 24px; }
+  .phone-frame > .app-shell > #climate-screen .climate-hero b { font-size: 21px; }
+  .phone-frame > .app-shell > #climate-screen .climate-hero span,
+  .phone-frame > .app-shell > #climate-screen .climate-hero .farm-risk-note { font-size: 14px; line-height: 1.5; }
+  .phone-frame > .app-shell > #climate-screen .forecast { gap: 14px; }
+  .phone-frame > .app-shell > #climate-screen .forecast-card { flex-basis: 125px; height: 150px; padding: 18px 12px; }
+  .phone-frame > .app-shell > #climate-screen .forecast-card b { font-size: 14px; }
+  .phone-frame > .app-shell > #climate-screen .forecast-card strong { font-size: 19px; }
+  .phone-frame > .app-shell > #climate-screen .alert { min-height: 120px; padding: 20px 20px 20px 70px; }
+  .phone-frame > .app-shell > #climate-screen .alert h3 { font-size: 17px; line-height: 1.4; }
+  .phone-frame > .app-shell > #climate-screen .alert p,
+  .phone-frame > .app-shell > #climate-screen .farm-advisory p { font-size: 14px; line-height: 1.6; }
+  .phone-frame > .app-shell > #climate-screen .farm-advisory { margin: 22px 0; padding: 22px 24px 22px 64px; }
+  .phone-frame > .app-shell > #climate-screen .farm-advisory h2 { font-size: 19px; }
+  .phone-frame > .app-shell > .new-screen button { font-family: 'Nunito Sans', sans-serif; }
+  .phone-frame > .app-shell.community-route > .new-bottom-nav { display: none !important; }
+
+  /* Type scale and consistent spacing, with selectors that match the actual DOM. */
+  .phone-frame > .app-shell { --page-pad: 0px; font-family: 'Nunito Sans', sans-serif; font-size: 16px; line-height: 1.6; }
+  .phone-frame > .app-shell .welcome .wave { font-size: 28px; }
+  .phone-frame > .app-shell .stat strong { font: 800 30px/1.2 'Outfit', sans-serif; }
+  .phone-frame > .app-shell .stat strong small { font: 500 14px/1.4 'Nunito Sans', sans-serif; }
+  .phone-frame > .app-shell .stat p { font-size: 15px; line-height: 1.45; }
+  .phone-frame > .app-shell .stat-icon { width: 46px; height: 46px; font-size: 24px; }
+  .phone-frame > .app-shell .quick .quick-icon { width: 42px; height: 42px; font-size: 22px; margin-bottom: 14px; }
+  .phone-frame > .app-shell .quick button { text-align: left; }
+  .phone-frame > .app-shell .quick button b { font-size: 17px; line-height: 1.4; }
+  .phone-frame > .app-shell .quick button small { font-size: 14px; line-height: 1.55; }
+  .phone-frame > .app-shell .section-head { margin: 18px 0 14px; }
+  .phone-frame > .app-shell .section-head h2 { font: 800 20px/1.35 'Outfit', sans-serif; }
+  .phone-frame > .app-shell .section-head a,
+  .phone-frame > .app-shell .activity-view-all { font-size: 14px; }
+  .phone-frame > .app-shell .activity { padding: 16px 0; }
+  .phone-frame > .app-shell .activity-row { min-height: 74px; padding: 14px 18px; gap: 14px; }
+  .phone-frame > .app-shell .activity-icon { width: 42px; height: 42px; flex-basis: 42px; font-size: 21px; }
+  .phone-frame > .app-shell .activity-copy b { font-size: 16px; white-space: normal; line-height: 1.4; }
+  .phone-frame > .app-shell .activity-copy small { font-size: 14px; line-height: 1.5; }
+  .phone-frame > .app-shell .when { font-size: 13px; }
+  .phone-frame > .app-shell .home-articles-head button { font-size: 14px; }
+  .phone-frame > .app-shell .home-article-list { gap: 14px; }
+  .phone-frame > .app-shell .home-article h3 { font-size: 18px; line-height: 1.4; }
+  .phone-frame > .app-shell .home-article p { font-size: 15px; line-height: 1.55; }
+  .phone-frame > .app-shell .home-article-tag,
+  .phone-frame > .app-shell .home-article-meta { font-size: 13px; }
+  .phone-frame > .app-shell .home-slide-action { min-height: 44px; padding: 10px 18px; }
+  .phone-frame > .app-shell .home-featured .home-slide-content { width: min(70%, 670px); }
+  .phone-frame > .app-shell .new-screen { font-size: 16px; line-height: 1.6; }
+  .phone-frame > .app-shell .new-screen .screen-title { font-size: 18px; line-height: 1.4; }
+  .phone-frame > .app-shell .new-screen .screen-title a { font-size: 14px; }
+  .phone-frame > .app-shell .new-screen .topbar { padding: 26px 0 22px; }
+  .phone-frame > .app-shell .new-screen .topbar h1 { font: 800 29px/1.3 'Outfit', sans-serif; }
+  .phone-frame > .app-shell .new-screen .topbar p { font-size: 15px; line-height: 1.55; }
+  .phone-frame > .app-shell #climate-screen .forecast-card { flex-basis: 130px; min-height: 160px; }
+  .phone-frame > .app-shell #climate-screen .forecast-card small { font-size: 13px; }
+  .phone-frame > .app-shell #climate-screen .forecast-card .weather { font-size: 24px; height: 40px; }
+  .phone-frame > .app-shell #climate-screen .alert h3 { font-size: 18px; line-height: 1.45; }
+  .phone-frame > .app-shell #climate-screen .alert p,
+  .phone-frame > .app-shell #climate-screen .farm-advisory p { font-size: 15px; line-height: 1.6; }
+  .phone-frame > .app-shell #climate-screen .source { font-size: 13px; }
+  .phone-frame > .app-shell #climate-screen .badge { font-size: 12px; }
+  .phone-frame > .app-shell #scan-screen .dark-head { padding: 28px 30px; }
+  .phone-frame > .app-shell #scan-screen .scan-title h1 { font: 800 30px/1.3 'Outfit', sans-serif; }
+  .phone-frame > .app-shell #scan-screen .scan-title p { font-size: 15px; line-height: 1.5; }
+  .phone-frame > .app-shell #scan-screen .segment button { font-size: 15px; }
+  .phone-frame > .app-shell #scan-screen .upload { margin-left: 0; margin-right: 0; }
+  .phone-frame > .app-shell #scan-screen .upload h2 { font-size: 22px; }
+  .phone-frame > .app-shell #scan-screen .upload p { font-size: 15px; line-height: 1.55; }
+  .phone-frame > .app-shell #scan-screen .choose,
+  .phone-frame > .app-shell #scan-screen .analyze,
+  .phone-frame > .app-shell #scan-screen .secondary-action { font-size: 15px; }
+  .phone-frame > .app-shell #scan-screen .scan-status,
+  .phone-frame > .app-shell #scan-screen .detection-label { font-size: 14px; }
+  .phone-frame > .app-shell #scan-screen .result h2 { font-size: 22px; }
+  .phone-frame > .app-shell #scan-screen .result p { font-size: 15px; line-height: 1.6; }
+  .phone-frame > .app-shell #scan-screen .history-copy { font-size: 15px; }
+  .phone-frame > .app-shell #scan-screen .history-copy small { font-size: 13px; }
+  .phone-frame > .app-shell #profile-screen .profile-head h1 { font: 800 30px/1.3 'Outfit', sans-serif; }
+  .phone-frame > .app-shell #profile-screen .profile-head p { font-size: 15px; line-height: 1.55; }
+  .phone-frame > .app-shell #profile-screen .stats-pills span { font-size: 14px; }
+  .phone-frame > .app-shell #profile-screen .profile-section .screen-title { font-size: 18px; }
+  .phone-frame > .app-shell #profile-screen .profile-section .screen-title a { font-size: 14px; }
+  .phone-frame > .app-shell #profile-screen .row-label { font-size: 16px; }
+  .phone-frame > .app-shell #profile-screen .row-value { font-size: 14px; }
+  .phone-frame > .app-shell > .new-bottom-nav button,
+  .phone-frame > .app-shell > .new-bottom-nav button span:not(.nav-icon):not(.add) { font: 600 16px/1.4 'Nunito Sans', sans-serif; }
+  .phone-frame > .app-shell > .new-bottom-nav .nav-icon { font-size: 22px; }
+  .phone-frame > .app-shell > .new-bottom-nav .add-label { font-size: 16px; }
+
+  /* Warm, editorial farm dashboard design: one desktop theme */
+  :root {
+    --tb-desktop-forest: #123e30;
+    --tb-desktop-leaf: #357f51;
+    --tb-desktop-citrus: #d4ab4f;
+    --tb-desktop-cream: #faf6e9;
+  }
+  body, .phone-frame {
+    background: #e9efe5;
+  }
+  .phone-frame > .app-shell {
+    color: #183529;
+    background:
+      radial-gradient(ellipse 580px 390px at 95% 8%, rgba(215, 183, 90, .18), transparent 75%),
+      radial-gradient(ellipse 620px 500px at 0% 32%, rgba(124, 174, 121, .16), transparent 76%),
+      linear-gradient(160deg, #f8f9f0 0%, #eef5eb 50%, #faf7ed 100%);
+  }
+  .phone-frame > .app-shell > header {
+    border-bottom: 1px solid #dce7d8;
+  }
+  .phone-frame > .app-shell > header .avatar {
+    background: linear-gradient(135deg, #18553c, #72a95d);
+    box-shadow: 0 4px 12px rgba(27,79,50,.17);
+  }
+  .phone-frame > .app-shell > .new-bottom-nav {
+    background: linear-gradient(180deg, #103e30, #1e5740 75%, #295f43);
+    border-right: 1px solid rgba(255,255,255,.13);
+    box-shadow: 5px 0 25px rgba(17,55,37,.13);
+  }
+  .phone-frame > .app-shell > .new-bottom-nav::before {
+    color: #f3f5e8;
+    font: 700 29px/1.15 'Outfit', sans-serif;
+    letter-spacing: -.7px;
+  }
+  .phone-frame > .app-shell > .new-bottom-nav button {
+    color: #e0ecdf;
+    font: 700 16px/1.4 'Nunito Sans', sans-serif;
+    transition: background .17s ease, color .17s ease;
+  }
+  .phone-frame > .app-shell > .new-bottom-nav button:hover,
+  .phone-frame > .app-shell > .new-bottom-nav button.active {
+    background: rgba(245,249,229,.17);
+    color: #ffffff;
+  }
+  .phone-frame > .app-shell > .new-bottom-nav .add {
+    background: #e0b85e;
+    color: #173b27;
+  }
+  .phone-frame > .app-shell > .welcome h1 {
+    color: #173d2e;
+    font: 700 34px/1.16 'Outfit', sans-serif;
+  }
+  .phone-frame > .app-shell > .welcome .eyebrow {
+    color: #50745b;
+    font-weight: 700;
+  }
+  .phone-frame > .app-shell > .welcome .sub { color: #617665; }
+
+  /* Stat cards: allow labels to wrap without overflowing */
+  .phone-frame > .app-shell > .stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 18px;
+    padding: 0;
+  }
+  .phone-frame > .app-shell > .stats > .stat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    min-height: 205px;
+    height: auto;
+    padding: 24px 16px 22px;
+    border: 1px solid rgba(72, 126, 81, .15);
+    border-radius: 22px;
+    background: linear-gradient(160deg, #ffffff 0%, #f7faf2 100%);
+    box-shadow: 0 8px 22px rgba(27,68,38,.07);
+  }
+  .phone-frame > .app-shell .stat-icon {
+    flex: none;
+    width: 54px;
+    height: 54px;
+    margin: 0;
+    font-size: 26px;
+  }
+  .phone-frame > .app-shell .stat strong {
+    display: block;
+    margin: 0;
+    color: #173e2d;
+    font: 700 32px/1.1 'Outfit', sans-serif;
+  }
+  .phone-frame > .app-shell .stat strong small {
+    font: 700 14px/1.25 'Nunito Sans', sans-serif;
+  }
+  .phone-frame > .app-shell .stat p {
+    display: block;
+    flex: none;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    margin: 0;
+    color: #60735d;
+    font: 700 16px/1.4 'Nunito Sans', sans-serif;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-align: center;
+  }
+  .phone-frame > .app-shell > .quick {
+    gap: 18px;
+    padding: 20px 0;
+  }
+  .phone-frame > .app-shell > .quick button,
+  .phone-frame > .app-shell .home-article,
+  .phone-frame > .app-shell .activity-list {
+    border: 1px solid #dbe8d7;
+    border-radius: 20px;
+    background: #fffef9;
+    box-shadow: 0 9px 22px rgba(29,78,43,.06);
+  }
+  .phone-frame > .app-shell > .quick button { min-height: 135px; padding: 20px 22px; }
+  .phone-frame > .app-shell > .quick button:hover,
+  .phone-frame > .app-shell .home-article:hover {
+    background: #f2f8eb;
+    border-color: #acd4a5;
+  }
+  .phone-frame > .app-shell > .quick button b {
+    color: #204c35;
+    font-size: 18px;
+  }
+  .phone-frame > .app-shell > .quick button small { color: #667767; font-size: 15px; }
+  .phone-frame > .app-shell .home-featured {
+    border-radius: 24px;
+    box-shadow: 0 15px 32px rgba(15,66,39,.17);
+  }
+  .phone-frame > .app-shell .home-slide { min-height: 260px; }
+  .phone-frame > .app-shell .home-slide-content { padding: 34px 38px 46px; }
+  .phone-frame > .app-shell .home-slide h2 {
+    max-width: 520px;
+    font: 700 clamp(27px, 2.7vw, 40px)/1.14 'Outfit', sans-serif;
+  }
+  .phone-frame > .app-shell .home-slide p {
+    max-width: 510px;
+    font: 600 16px/1.55 'Nunito Sans', sans-serif;
+  }
+  .phone-frame > .app-shell .home-slide-kicker { font-size: 12px; }
+  .phone-frame > .app-shell .home-slide-action { font-size: 15px; }
+  .phone-frame > .app-shell .home-articles-head h2,
+  .phone-frame > .app-shell .section-head h2 {
+    color: #1e5137;
+    font: 700 24px/1.3 'Outfit', sans-serif;
+  }
+  .phone-frame > .app-shell .home-article { padding: 16px; }
+  .phone-frame > .app-shell .home-article img { width: 110px; height: 92px; }
+  .phone-frame > .app-shell .home-article { grid-template-columns: 110px minmax(0,1fr) 20px; gap: 18px; }
+  .phone-frame > .app-shell .home-article h3 {
+    color: #204a32;
+    font: 700 19px/1.35 'Outfit', sans-serif;
+  }
+  .phone-frame > .app-shell .activity-row { min-height: 82px; }
+  .phone-frame > .app-shell .activity-copy b { color: #244e35; }
+  .phone-frame > .app-shell .new-screen .topbar h1,
+  .phone-frame > .app-shell #profile-screen .profile-head h1,
+  .phone-frame > .app-shell #scan-screen .scan-title h1 {
+    color: #1c5637;
+    font: 700 32px/1.25 'Outfit', sans-serif;
+  }
+  .phone-frame > .app-shell #climate-screen .climate-hero {
+    background: linear-gradient(118deg, #174c36, #348e5a 66%, #91bd65);
+    border-radius: 22px;
+    box-shadow: 0 16px 28px rgba(34,111,66,.19);
+  }
+  .phone-frame > .app-shell #climate-screen .forecast-card {
+    border-color: #cfe5cf;
+    border-radius: 19px;
+    background: #fffef9;
+  }
+  .phone-frame > .app-shell #climate-screen .forecast-card.today {
+    background: linear-gradient(145deg, #1b6442, #44875a);
+  }
+  .phone-frame > .app-shell #climate-screen .alert,
+  .phone-frame > .app-shell #climate-screen .farm-advisory {
+    border-radius: 19px;
+  }
+}
+@media (min-width: 900px) and (max-width: 1180px) {
+  .phone-frame > .app-shell > .quick { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
   </style>
   <link rel="stylesheet" href="../css/chat-widget.css">
+  <link rel="stylesheet" href="../css/tanodbukid-theme.css">
 </head>
 
 <body>
@@ -5240,14 +5613,6 @@
         analyzeButton.className = 'analyze';
         analyzeButton.id = 'analyze-photo';
         analyzeButton.textContent = 'Send photo';
-        analyzeButton.addEventListener('click', () => {
-          analyzeButton.textContent = 'Analyzing...';
-          analyzeButton.classList.add('loading');
-          setTimeout(() => {
-            analyzeButton.remove();
-            modal('Photo sent to Tanod Bukid AI', '<p>Rice Blast Detected<br><strong>87% confidence</strong><br>Early stage and manageable with timely intervention.</p>');
-          }, 900);
-        });
         scanUpload.appendChild(analyzeButton);
       };
 
@@ -5331,6 +5696,7 @@
   <script type="module" src="../js/chat-widget.js"></script>
   <script type="module" src="../js/dashboard-profile.js"></script>
   <script type="module" src="../js/logout.js"></script>
+  <script defer src="../js/scanner-ai.js"></script>
 </body>
 
 </html>
