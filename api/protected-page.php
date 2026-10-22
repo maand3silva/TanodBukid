@@ -12,10 +12,10 @@ if (session_user() === null) {
 $pages = [
     'profile-setup' => __DIR__ . '/../profile-setup.html',
     'scanner' => __DIR__ . '/../dashboard.html',
-    'dashboard' => __DIR__ . '/../Tanod Bukid Dash Board (1)/index (1).html',
+    'dashboard' => __DIR__ . '/../dashboard/index.html',
     'dist-profile-setup' => __DIR__ . '/../dist/profile-setup.html',
     'dist-scanner' => __DIR__ . '/../dist/dashboard.html',
-    'dist-dashboard' => __DIR__ . '/../dist/Tanod Bukid Dash Board (1)/index (1).html',
+    'dist-dashboard' => __DIR__ . '/../dist/dashboard/index.html',
 ];
 $page = is_string($_GET['page'] ?? null) ? $_GET['page'] : '';
 if (!isset($pages[$page])) {

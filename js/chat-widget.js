@@ -197,7 +197,7 @@
       return state.panel
     }
 
-    const assistantAvatar = new URL('../TANOD BUKID/images/ai profile pic.png', import.meta.url).href
+    const assistantAvatar = new URL('../landing/images/ai profile pic.png', import.meta.url).href
     const panel = document.createElement('section')
     panel.id = 'ai-chat'
     panel.className = 'ai-chat'

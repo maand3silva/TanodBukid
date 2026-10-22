@@ -510,7 +510,7 @@ select {
   position: absolute;
   z-index: -1;
   inset: 0;
-  background: linear-gradient(180deg, rgba(247, 250, 246, .96) 0%, rgba(247, 250, 246, .93) 62%, rgba(230, 239, 226, .65) 100%), url('TANOD BUKID/images/landingpagebg.jpg') center bottom / cover no-repeat;
+  background: linear-gradient(180deg, rgba(247, 250, 246, .96) 0%, rgba(247, 250, 246, .93) 62%, rgba(230, 239, 226, .65) 100%), url('landing/images/landingpagebg.jpg') center bottom / cover no-repeat;
   content: '';
 }
 

@@ -7,8 +7,8 @@
   const landingApp = document.querySelector('#landing-app')
   const authApp = document.querySelector('#auth-app')
   const projectBaseUrl = new URL('./', window.location.href)
-  const apiBaseUrl = new URL('api/', projectBaseUrl)
-  const dashboardHomePath = 'Tanod%20Bukid%20Dash%20Board%20(1)/index%20(1).html'
+  const apiBaseUrl = new URL('/api/', window.location.origin)
+  const dashboardHomePath = '/dashboard/index.html'
   const state = { route: window.location.hash.slice(1) }
 
   try {
@@ -235,7 +235,7 @@
         mobile_number: values['signin-mobile'],
         password: values['signin-password']
       })
-      window.location.assign(new URL(dashboardHomePath, projectBaseUrl))
+      window.location.assign(new URL(dashboardHomePath, window.location.origin))
     } catch (error) {
       showFeedback(error.message)
       button.disabled = false
@@ -295,7 +295,7 @@
 
   function render() {
     if (state.route === 'dashboard') {
-      window.location.replace(new URL(dashboardHomePath, projectBaseUrl))
+      window.location.replace(new URL(dashboardHomePath, window.location.origin))
       return
     }
     if (!state.route) {

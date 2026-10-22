@@ -6,10 +6,10 @@ import { resolve } from 'node:path'
 const protectedPages = new Set([
   '/profile-setup.html',
   '/dashboard.html',
-  '/Tanod Bukid Dash Board (1)/index (1).html',
+  '/dashboard/index.html',
   '/dist/profile-setup.html',
   '/dist/dashboard.html',
-  '/dist/Tanod Bukid Dash Board (1)/index (1).html',
+  '/dist/dashboard/index.html',
 ])
 
 function authPageGuard() {
@@ -104,7 +104,7 @@ export default defineConfig({
         profile: resolve(__dirname, 'profile-setup.html'),
         home: resolve(
           __dirname,
-          'Tanod Bukid Dash Board (1)/index (1).html'
+          'dashboard/index.html'
         ),
       },
     },

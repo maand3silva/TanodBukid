@@ -158,7 +158,7 @@
     }
   }
 
-  function finish() { persist(true); window.location.href = 'Tanod Bukid Dash Board (1)/index (1).html' }
+  function finish() { persist(true); window.location.href = 'dashboard/index.html' }
   function renderModal() { if (!state.otherType) { modalRoot.innerHTML = ''; return }; const noun = state.otherType === 'crops' ? 'crop' : state.otherType === 'farmScale' ? 'farm type' : 'livestock'; modalRoot.innerHTML = `<div class="other-modal-backdrop" data-close-modal><div class="other-modal" role="dialog" aria-modal="true" aria-labelledby="other-title"><h2 id="other-title">Add another ${noun}</h2><input id="other-value" autofocus class="profile-input" placeholder="Enter ${noun} type"><div class="modal-actions">${button('CANCEL', 'cancel-other', 'back-button')}${button('ADD', 'add-other')}</div></div></div>`; const value = modalRoot.querySelector('#other-value'); modalRoot.querySelector('[data-action="cancel-other"]').addEventListener('click', () => { state.otherType = null; renderModal() }); modalRoot.querySelector('[data-action="add-other"]').addEventListener('click', () => addOther(value.value)); value.addEventListener('keydown', event => { if (event.key === 'Enter') addOther(value.value) }); modalRoot.querySelector('[data-close-modal]').addEventListener('mousedown', event => { if (event.target === event.currentTarget) { state.otherType = null; renderModal() } }) }
   function addOther(value) { const cleanValue = value.trim(); if (!cleanValue || !state.otherType) return; if (Array.isArray(state.data[state.otherType])) { if (!state.data[state.otherType].includes(cleanValue)) state.data[state.otherType].push(cleanValue) } else state.data[state.otherType] = cleanValue; state.otherType = null; render() }
 
