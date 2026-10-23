@@ -553,7 +553,7 @@
 
       historyButton.addEventListener('click', openScanHistory)
 
-      const homePath = 'Tanod%20Bukid%20Dash%20Board%20(1)/index%20(1).html'
+      const homePath = '/dashboard/index.html'
       dashboardNav.querySelectorAll('[data-dashboard-route]').forEach((button) => button.addEventListener('click', () => {
         const route = button.dataset.dashboardRoute
         if (route === 'scan') return
